@@ -2,12 +2,13 @@
 - name: Restart apache
   service:
     name: "{{ apache_service }}"
-    state: "{{ apache_restart_state }}"
+    state: restarted
   listen: __apache_restart
 
 
 - name: Restart shibd
   service:
     name: "shibd"
+    state: restarted
   listen: __shibd_restart
 
