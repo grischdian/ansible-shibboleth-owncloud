@@ -26,6 +26,12 @@
     dest: /etc/shibboleth/sp-key.pem
     remote_src: yes
 
+- name: Get ADFS Metadata
+  command:
+    argv: curl
+      - "https://{{ shibboleth_adfs_server_name }}/FederationMetadata/2007-06/FederationMetadata.xml"
+    register: get_adfs_metadata
+
 - name: Create shibboleth2.xml
   template:
     src: shibboleth2.xml.j2
@@ -59,5 +65,3 @@
     group: root
     mode: '0644'
 
-- debug:
-    msg: "{{ create_adfs_metadata.stdout | regex_search((\.*)entityID=\"(\.*)\") }}"

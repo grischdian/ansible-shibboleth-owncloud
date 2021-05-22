@@ -31,7 +31,7 @@
             entityID property and adjust discoveryURL to point to discovery service.
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
-            <SSO entityID="https://{{ shibboleth_adfs_server_name }}/adfs/services/trust">
+            <SSO entityID="{{ get_adfs_metadata.stdout | regex_search('(.*)entityID=\"(\\S+)\"', '\\2') }">
               SAML2
             </SSO>
 
