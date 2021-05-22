@@ -51,6 +51,30 @@
     - __shibd_restart
     - __apache_restart
 
+- name: Create attribute-policy.xml
+  template:
+    src: attribute-policy.xml.j2
+    dest: "/etc/shibboleth/attribute-policy.xml"
+  notify: 
+    - __shibd_restart
+    - __apache_restart
+
+- name: Create protocols.xml
+  template:
+    src: protocols.xml.j2
+    dest: "/etc/shibboleth/protocols.xml"
+  notify: 
+    - __shibd_restart
+    - __apache_restart
+
+- name: Create security-policy.xml
+  template:
+    src: security-policy-policy.xml.j2
+    dest: "/etc/shibboleth/security-policy.xml"
+  notify: 
+    - __shibd_restart
+    - __apache_restart
+
 - name: Create ADFS Metadata
   command:
     argv:
