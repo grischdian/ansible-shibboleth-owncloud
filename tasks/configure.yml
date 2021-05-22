@@ -29,7 +29,7 @@
 
 - name: Get ADFS Metadata
   command:
-    command_warnings: false
+    warn: no
     argv: 
       - /usr/bin/curl
       - "https://{{ shibboleth_adfs_server_name }}/FederationMetadata/2007-06/FederationMetadata.xml"
