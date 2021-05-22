@@ -12,7 +12,7 @@
       - /etc/shibboleth/keygen.sh 
       - -o 
       - /assets
-    creates: /assests/sp-cert.pem
+    creates: /assets/sp-cert.pem
 
 - name: Copy sp-cert.pem to /etc/shibboleth
   copy:
