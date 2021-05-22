@@ -15,6 +15,19 @@
       - "{{ mounted_nfs_share }}"
     creates: "{{ mounted_nfs_share }}/sp-cert.pem"
 
+- name: Clean /etc/shibboleth
+  file:
+    path: /etc/shibboleth
+    state: absent
+
+- name: Clean /etc/shibboleth II
+  file:
+    path: /etc/shibboleth
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
 - name: Copy sp-cert.pem to /etc/shibboleth
   copy:
     src: "{{ mounted_nfs_share }}/sp-cert.pem"

@@ -3,16 +3,4 @@
   package:
     name: "{{ shibboleth_package }}"
 
-- name: Clean /etc/shibboleth
-  file:
-    path: /etc/shibboleth
-    state: absent
-
-- name: Clean /etc/shibboleth II
-  file:
-    path: /etc/shibboleth
-    state: directory
-    mode: '0755'
-    owner: root
-    group: root
 
