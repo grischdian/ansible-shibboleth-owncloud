@@ -26,4 +26,20 @@
     dest: /etc/shibboleth/sp-key.pem
     remote_src: yes
 
+- name: Create shibboleth2.xml
+  template:
+    src: shib.conf.j2
+    dest: "{{ apache_conf_path }}/shib.conf"
+  notify: 
+    - __shibd_restart
+    - __apache_restart
+
+- name: Create attribute-map.xml
+  template:
+    src: shib.conf.j2
+    dest: "{{ apache_conf_path }}/shib.conf"
+  notify: 
+    - __shibd_restart
+    - __apache_restart
+
 

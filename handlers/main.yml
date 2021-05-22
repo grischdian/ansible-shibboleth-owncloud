@@ -5,3 +5,9 @@
     state: "{{ apache_restart_state }}"
   listen: __apache_restart
 
+
+- name: Restart shibd
+  service:
+    name: "shibd"
+  listen: __shibd_restart
+
