@@ -1,0 +1,5 @@
+---
+- name: Ensure Shibboleth is installed
+  package:
+    name: "{{ shibboleth_package }}"
+
