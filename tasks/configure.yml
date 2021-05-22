@@ -42,4 +42,19 @@
     - __shibd_restart
     - __apache_restart
 
+- name: Create ADFS Metadata
+  command:
+    argv:
+      - /usr/bin/php
+      - "{{ owncloud_deploy_path }}/apps/user_shibboleth/tools/adfs2fed.php"
+      - "https://{{ shibboleth_adfs_server_name }}/FederationMetadata/2007-06/FederationMetadata.xml"
+      - "{{ shibboleth_ad_domain }}"
+  register: create_adfs_metadata
 
+- name: Write ADFS Metadata to File
+  copy:
+    dest: /etc/shibboleth/owncloud-metadata.xml
+    content: "{{ create_adfs_metadata.stdout }}"
+    owner: root
+    group: root
+    mode: '0644'
