@@ -4,3 +4,22 @@
     src: shib.conf.j2
     dest: "{{ apache_conf_path }}/shib.conf"
   notify: __apache_restart
+
+- name: Generate shibboleth-certs
+  command: 
+    argv:
+      - /usr/bin/bash 
+      - /etc/shibboleth/keygen.sh 
+      - -o 
+      - /assets
+    creates: /assests/sp-cert.pem
+
+- name: Copy sp-cert.pem to /etc/shibboleth
+  copy:
+    src: /assets/sp-cert.pem
+    dest: /etc/shibboleth/sp-cert.pem
+
+- name: Copy sp-key.pem to /etc/shibboleth 
+  copy:
+    src: /assets/sp-key.pem
+    dest: /etc/shibboleth/sp-key.pem

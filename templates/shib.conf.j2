@@ -38,17 +38,20 @@ ShibCompatValidUser Off
   Alias /shibboleth-sp/main.css /usr/share/shibboleth/main.css
 </IfModule>
 
-#
-# Configure the module for content.
-#
-# You MUST enable AuthType shibboleth for the module to process
-# any requests, and there MUST be a require command as well. To
-# enable Shibboleth but not specify any session/access requirements
-# use "require shibboleth".
-#
-<Location /secure>
+<Location />
+    AuthType shibboleth
+    ShibRequestSetting requireSession false
+    Require shibboleth
+</Location>
+
+<Location ~ "^(/index.php)?/login">
   AuthType shibboleth
-  ShibRequestSetting requireSession 1
-  require shib-session
+  ShibRequestSetting requireSession true
+  require valid-user
+</Location>
+
+<Location ~ "/.*\.(css|js|woff)">
+    AuthType None
+    Require all granted
 </Location>
 
