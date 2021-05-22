@@ -4,7 +4,7 @@
     src: shib.conf.j2
     dest: "{{ apache_conf_path }}/shib.conf"
   notify: __apache_restart
-  when: "{{ shibboleth_activate_apache }}" == true
+  when: shibboleth_activate_apache == true
 
 - name: Generate shibboleth-certs
   command: 
