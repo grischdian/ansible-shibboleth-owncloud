@@ -18,8 +18,10 @@
   copy:
     src: /assets/sp-cert.pem
     dest: /etc/shibboleth/sp-cert.pem
+    remote_src: yes
 
 - name: Copy sp-key.pem to /etc/shibboleth 
   copy:
     src: /assets/sp-key.pem
     dest: /etc/shibboleth/sp-key.pem
+    remote_src: yes
