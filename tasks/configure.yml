@@ -11,17 +11,19 @@
       - /usr/bin/bash 
       - /etc/shibboleth/keygen.sh 
       - -o 
-      - /assets
-    creates: /assets/sp-cert.pem
+      - "{{ mounted_nfs_share }}"
+    creates: "{{ mounted_nfs_share }}"/sp-cert.pem
 
 - name: Copy sp-cert.pem to /etc/shibboleth
   copy:
-    src: /assets/sp-cert.pem
+    src: "{{ mounted_nfs_share }}"/sp-cert.pem
     dest: /etc/shibboleth/sp-cert.pem
     remote_src: yes
 
 - name: Copy sp-key.pem to /etc/shibboleth 
   copy:
-    src: /assets/sp-key.pem
+    src: "{{ mounted_nfs_share }}"/sp-key.pem
     dest: /etc/shibboleth/sp-key.pem
     remote_src: yes
+
+
