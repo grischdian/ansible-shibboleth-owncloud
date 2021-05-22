@@ -1,0 +1,6 @@
+---
+- name: Create apache shibboleth config
+  template:
+    src: shib.conf.j2
+    dest: "{{ apache_conf_path }}/shib.conf"
+  notify: __apache_restart
