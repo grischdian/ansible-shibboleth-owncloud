@@ -60,4 +60,4 @@
     mode: '0644'
 
 - debug:
-    msg: "{{ create_adfs_metadata.stdout | regex_search((.*)entityID=\"(.*)\") }}"
+    msg: "{{ create_adfs_metadata.stdout | regex_search((\.*)entityID=\"(\.*)\") }}"
