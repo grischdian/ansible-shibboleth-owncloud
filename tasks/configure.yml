@@ -4,6 +4,7 @@
     src: shib.conf.j2
     dest: "{{ apache_conf_path }}/shib.conf"
   notify: __apache_restart
+  when: "{{ shibboleth_activate_apache }}" == true
 
 - name: Generate shibboleth-certs
   command: 
@@ -28,6 +29,7 @@
 
 - name: Get ADFS Metadata
   command:
+    command_warnings: false
     argv: 
       - /usr/bin/curl
       - "https://{{ shibboleth_adfs_server_name }}/FederationMetadata/2007-06/FederationMetadata.xml"
