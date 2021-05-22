@@ -28,16 +28,16 @@
 
 - name: Create shibboleth2.xml
   template:
-    src: shib.conf.j2
-    dest: "{{ apache_conf_path }}/shib.conf"
+    src: shibboleth2.xml.j2
+    dest: "/etc/shibboleth/shibboleth2.xml"
   notify: 
     - __shibd_restart
     - __apache_restart
 
 - name: Create attribute-map.xml
   template:
-    src: shib.conf.j2
-    dest: "{{ apache_conf_path }}/shib.conf"
+    src: attribute-map.xml.j2
+    dest: "/etc/shibboleth/attribute-map.xml"
   notify: 
     - __shibd_restart
     - __apache_restart
