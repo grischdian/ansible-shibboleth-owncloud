@@ -82,7 +82,7 @@
 
 - name: Create security-policy.xml
   template:
-    src: security-policy-policy.xml.j2
+    src: security-policy.xml.j2
     dest: "/etc/shibboleth/security-policy.xml"
   notify: 
     - __shibd_restart
