@@ -15,10 +15,16 @@
       - "{{ mounted_nfs_share }}"
     creates: "{{ mounted_nfs_share }}/sp-cert.pem"
 
+- name: Check if Shibboleth already provisioned
+  stat:
+    path: /etc/shibboleth/sp-cert.pem
+  register: shibboleth-provisioned
+
 - name: Clean /etc/shibboleth
   file:
     path: /etc/shibboleth
     state: absent
+  when: not shibboleth-provisioned.exists
 
 - name: Clean /etc/shibboleth II
   file:
