@@ -18,13 +18,13 @@
 - name: Check if Shibboleth already provisioned
   stat:
     path: /etc/shibboleth/sp-cert.pem
-  register: shibboleth-provisioned
+  register: shibboleth_provisioned
 
 - name: Clean /etc/shibboleth
   file:
     path: /etc/shibboleth
     state: absent
-  when: not shibboleth-provisioned.exists
+  when: not shibboleth_provisioned.stat.exists
 
 - name: Clean /etc/shibboleth II
   file:
